@@ -16,7 +16,6 @@ with open(PEM_FILE, 'r') as f:
 
 cert = s[s.find(HEADER) + len(HEADER):s.find(FOOTER)]
 prime = b64(cert)[7:-3]
-hx = ''.join([hex(ord(i))[2:].zfill(2) for i in prime])
 
 with open(PRIME_FILE, 'w') as f:
-    f.write(str(int(hx, 16)))
+    f.write(str(int(prime.encode('hex'), 16)))
